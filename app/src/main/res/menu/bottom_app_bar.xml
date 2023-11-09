@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+            android:id="@+id/item_1"
+            android:enabled="true"
+            android:icon="@drawable/baseline_analytics_24"
+            android:title="Home"/>
+    <item
+            android:id="@+id/item_2"
+            android:enabled="true"
+            android:icon="@drawable/baseline_monetization_on_24"
+            android:title="Convert Uang"/>
+    <item
+            android:id="@+id/item_3"
+            android:enabled="true"
+            android:icon="@drawable/baseline_account_circle_24"
+            android:title="Profile"/>
+
+    <item
+            android:id="@+id/item_4"
+            android:enabled="true"
+            android:icon="@drawable/baseline_recycling_24"
+            android:title="Convert Satuan"/>
+    <item
+            android:id="@+id/item_5"
+            android:enabled="true"
+            android:icon="@drawable/baseline_groups_2_24"
+            android:title="Calculator Umur"/>
+
+
+</menu>
