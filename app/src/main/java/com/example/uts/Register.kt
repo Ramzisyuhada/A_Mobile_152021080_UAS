@@ -6,16 +6,69 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import com.example.uts.databinding.ActivityRegisterBinding
+import com.google.firebase.FirebaseApp
+import com.google.firebase.auth.FirebaseAuth
+import com.google.gson.Gson
+import okhttp3.OkHttpClient
+import okhttp3.Request
+import okhttp3.Response
+import java.io.IOException
+import okhttp3.*
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import java.net.URLEncoder
+import java.util.concurrent.CompletableFuture
+
 
 class Register : AppCompatActivity() {
-    private lateinit var binding : ActivityRegisterBinding
+     var auth = FirebaseAuth.getInstance()
 
+
+    private lateinit var binding : ActivityRegisterBinding
+    fun api(username: String, password: String):CompletableFuture<String> {
+        val TAG = "API_CALL" // Tag untuk identifikasi log
+        val gson = Gson()
+        val completableFuture = CompletableFuture<String>()
+        val jsonBody = gson.toJson(mapOf("name" to username, "pwd" to password))
+
+        val client = OkHttpClient()
+//        val mediaType = "application/json".toMediaTypeOrNull()
+        val mhs = RequestBody.create("application/json".toMediaTypeOrNull(), jsonBody)
+//        mhs = gson.toJson(mhs)
+        val url = "http://192.168.1.7/Apiandroid/create.php"
+        val request = Request.Builder()
+            .url(url)
+            .post(mhs)
+            .build()
+
+        client.newCall(request).enqueue(object : Callback {
+            override fun onFailure(call: Call, e: IOException) {
+                Log.e(TAG, "Gagal melakukan permintaan", e)
+            }
+
+            override fun onResponse(call: Call, response: Response) {
+                if (!response.isSuccessful) {
+                    Log.e(TAG, "Gagal melakukan permintaan: ${response.code}")
+                    return
+                }
+
+                val responseBody = response.body?.string()
+                Log.d(TAG, "Respon dari API: $responseBody")
+                completableFuture.complete(responseBody ?: "") // Mengembalikan respons ke CompletableFuture
+
+            }
+        })
+        return completableFuture
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         super.onCreate(savedInstanceState)
+        FirebaseApp.initializeApp(this)
+
         setContentView(binding.root)
+
+
         binding.loginD.setOnClickListener{
-            startActivity(Intent(this,MainActivity::class.java))
+            startActivity(Intent(this, MainActivity::class.java))
         }
 
         binding.buttonRegister.setOnClickListener{
@@ -56,7 +109,27 @@ class Register : AppCompatActivity() {
                 19 -> Toast.makeText(this,"Password tidak boleh kurang dari 5 ", Toast.LENGTH_SHORT).show()
                 20 -> Toast.makeText(this,"Second password tidak boleh kurang dari 5 ", Toast.LENGTH_SHORT).show()
                 21 -> Toast.makeText(this,"Password tidak sama dengan Second password", Toast.LENGTH_SHORT).show()
-                0 -> startActivity(Intent(this,MainActivity::class.java))
+                0 -> {
+//                    api(name, password1
+//                    )
+                    auth.createUserWithEmailAndPassword(name,password1).addOnCompleteListener {
+                        if(it.isSuccessful){
+                            startActivity(Intent(this, MainActivity::class.java))
+
+                        }else{
+                            Toast.makeText(this,it.exception.toString(), Toast.LENGTH_SHORT).show()
+                        }
+                    }
+//                    val responseFuture: CompletableFuture<String> = api(name,password1)
+//                    val response: String = responseFuture.get()
+//                    if (response == "0"){
+//                        Toast.makeText(this,"Username Telah dipakai", Toast.LENGTH_SHORT).show()
+//
+//                    }else {
+//                        startActivity(Intent(this,MainActivity::class.java))
+//
+//                    }
+                }
             }
 
 

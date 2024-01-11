@@ -18,11 +18,15 @@ class Home : AppCompatActivity() {
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
         val home = Home_f()
-        val conver = conversi_uang()
-        val profil = Profile()
-        val convert_sa = Convert_satuan()
-        val cal_umur = Calculator_umur()
+        val conver = Read()
+        val profil = Create()
 
+//        val delete = conver.view?.findViewById<Button>(R.id.delete)
+
+//        delete?.setOnClickListener {
+//            receivedData?.let { it1 -> loadFragment(home, it1) }
+//            Log.i("pindah","test")
+//        }
         if (receivedData != null) {
             loadFragment(home, receivedData)
         }
@@ -41,14 +45,14 @@ class Home : AppCompatActivity() {
                     loadFragment(profil, receivedData.toString())
                     true
                 }
-                R.id.item_4 -> {
-                    loadFragment(convert_sa, receivedData.toString())
-                    true
-                }
-                R.id.item_5 -> {
-                    loadFragment(cal_umur, receivedData.toString())
-                    true
-                }
+//                R.id.item_4 -> {
+//                    loadFragment(convert_sa, receivedData.toString())
+//                    true
+//                }
+//                R.id.item_5 -> {
+//                    loadFragment(cal_umur, receivedData.toString())
+//                    true
+//                }
                 else -> false
             }
         }
@@ -73,7 +77,7 @@ class Home : AppCompatActivity() {
         dialog.show()
     }
 
-    private fun loadFragment(fragment: Fragment, nama: String) {
+     fun loadFragment(fragment: Fragment, nama: String) {
 
         val bundle = Bundle()
         bundle.putString("data", nama)

@@ -1,4 +1,4 @@
-package com.example.uts
+package com.example.uas
 
 import org.junit.Test
 

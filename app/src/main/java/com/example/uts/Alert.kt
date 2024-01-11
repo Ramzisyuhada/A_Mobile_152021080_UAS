@@ -2,6 +2,7 @@ package com.example.uts
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.example.uts.R
 
 class Alert : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:tools="http://schemas.android.com/tools"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
+             tools:context=".Fragment.Create">
+
+    <!-- TODO: Update blank fragment layout -->
+<!--    <Space android:layout_width="match_parent" android:layout_height="00dp"/>-->
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="200dp"
+                  android:orientation="vertical">
+        <EditText
+                android:id="@+id/username_register"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="@string/nama"
+                android:textAlignment="center"
+                android:elevation="5dp"
+                android:background="@drawable/border_l"
+        />
+        <Space android:layout_width="match_parent" android:layout_height="40dp"/>
+
+        <EditText
+                android:id="@+id/password_register"
+                android:inputType="textWebPassword"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="@string/password"
+                android:textAlignment="center"
+                android:background="@drawable/border_l"/>
+        <Space android:layout_width="match_parent" android:layout_height="40dp"/>
+        <EditText
+                android:id="@+id/password_s"
+                android:inputType="textWebPassword"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="@string/second_password"
+                android:textAlignment="center"
+                android:background="@drawable/border_l"/>
+
+
+
+        <Space
+                android:layout_width="match_parent"
+                android:layout_height="80dp"/>
+
+        <androidx.appcompat.widget.AppCompatButton android:layout_width="match_parent"
+                                                   android:layout_height="wrap_content"
+                                                   android:id="@+id/buttonRegister"
+                                                   android:background="@drawable/button"
+                                                   android:text="Tambah"
+                                                   android:textStyle="bold"
+                                                   android:textColor="@color/white"
+
+        />
+
+
+    </LinearLayout>
+
+</FrameLayout>

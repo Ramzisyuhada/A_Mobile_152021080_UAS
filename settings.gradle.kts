@@ -5,6 +5,7 @@ pluginManagement {
         gradlePluginPortal()
         maven(url="https://jitpack.io")
         maven(url="https://oss.sonatype.org/content/repositories/snapshots/")
+        maven (url ="https://kotlin.bintray.com/ktor" )
 
 
     }
